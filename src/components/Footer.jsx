@@ -65,7 +65,7 @@ export default function Footer() {
             floating
             size="lg"
             className='text-dark m-1'
-            href='#!'
+            href='https://www.linkedin.com/in/rushikesh-sapkal007'
             role='button'
           >
             <MDBIcon fab className='fa-linkedin' />
@@ -90,8 +90,8 @@ export default function Footer() {
             ©2024 Copyright :
 
         </h3>
-        <a className='text-dark' href='https://rushikesh.com/'>
-          rushikesh.com
+        <a className='text-dark' href='https://rushikesh-sapkal-portfolio.vercel.app'>
+          Know About Me!
         </a>
       </div>
     </MDBFooter>
