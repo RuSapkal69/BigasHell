@@ -86,7 +86,7 @@ export default function Footer() {
       </MDBContainer>
 
       <div className='text-center p-4 bg-slate-950 mt-8'>
-        <h3 classsName='text-semibold text-white'>
+        <h3 className='text-semibold text-white'>
             ©2024 Copyright :
 
         </h3>
