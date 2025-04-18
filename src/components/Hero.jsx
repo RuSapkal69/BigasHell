@@ -31,7 +31,7 @@ const Hero = () => {
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/BigasHell.jpg')`, // You'll need to add this image to your public folder
-          filter: 'brightness(0.8) blur(2px)'
+          filter: 'brightness(0.6) blur(2px)'
         }}
       ></div>
       
@@ -52,7 +52,7 @@ const Hero = () => {
         >
           {/* Left Section: Text Content */}
           <motion.div 
-            className="flex flex-col justify-center items-start lg:w-1/2 space-y-8 pt-8 lg:pt-0"
+            className="flex flex-col justify-center items-start lg:w-2/5 space-y-8 pt-8 lg:pt-0"
             variants={childLeftVariants}
           >
             <div className="w-full">
@@ -84,22 +84,23 @@ const Hero = () => {
             </motion.div>
           </motion.div>
           
-          {/* Right Section: Video Container */}
+          {/* Right Section: Video Container - Now Larger */}
           <motion.div 
-            className="lg:w-1/2 flex items-center justify-center mt-10 lg:mt-0"
+            className="lg:w-3/5 flex items-center justify-center mt-10 lg:mt-0 px-4"
             variants={childRightVariants}
           >
-            <div className="w-full max-w-md aspect-video bg-black bg-opacity-40 rounded-lg border border-gray-700">
-              {/* Video will be inserted here */}
-              {/* Placeholder dimensions for video: 16:9 aspect ratio */}
+            <div className="w-full aspect-video bg-black bg-opacity-40 rounded-lg border border-gray-700 shadow-2xl shadow-red-900/20">
               <div className="w-full h-full flex items-center justify-center text-gray-400">
-                Your video will appear here
-                {/* Replace this with your actual video component */}
-                {/* <video 
+                <video 
                   className="w-full h-full object-cover rounded-lg"
                   controls
-                  src="/your-video-path.mp4"
-                ></video> */}
+                  src="./BigasHell gym promo video.mp4"
+                  type="video/mp4"
+                  autoPlay
+                  loop
+                  muted
+                  
+                ></video>
               </div>
             </div>
           </motion.div>
