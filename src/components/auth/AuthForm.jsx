@@ -87,7 +87,7 @@ export default function AuthForm({ type }) {
             <input
               id="name"
               name="name"
-              placeholder="John Doe"
+              placeholder="FirstName LastName"
               value={formData.name}
               onChange={handleChange}
               required
