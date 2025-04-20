@@ -93,7 +93,6 @@ const Hero = () => {
               <div className="w-full h-full flex items-center justify-center text-gray-400">
                 <video 
                   className="w-full h-full object-cover rounded-lg"
-                  controls
                   src="./BigasHell gym promo video.mp4"
                   type="video/mp4"
                   autoPlay
