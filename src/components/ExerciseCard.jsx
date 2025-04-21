@@ -7,7 +7,7 @@ const ExerciseCard = (props) => {
   const [setConfirmed, setSetConfirmed] = useState(null) // null, true, false
 
   function handleSetIncrement() {
-    setSetsCompleted((setsCompleted + 1) % 6)
+    setSetsCompleted((setsCompleted + 1) % 4)
     setSetConfirmed(null)
   }
 
@@ -68,30 +68,30 @@ const ExerciseCard = (props) => {
               <p className="font-medium">{exercise[info]}</p>
             </div>
           ))}
-          {setsCompleted < 5 && (
+          {setsCompleted < 3 && (
         <button
           onClick={handleSetIncrement}
           className='flex flex-col p-2 rounded border-[1.5px] 
             border-solid border-blue-900 hover:border-blue-600 w-full duration-200'
         >
           <h3 className='capitalize text-sm text-slate-400'>sets Completed</h3>
-          <p className='font-medium'>{setsCompleted} / 5</p>
+          <p className='font-medium'>{setsCompleted} / 3</p>
         </button>
       )}
 
-      {setsCompleted === 5 && setConfirmed === null && (
+      {setsCompleted === 3 && setConfirmed === null && (
         <div className='flex justify-between gap-2'>
           <button
             onClick={() => handleConfirm(true)}
             className='flex-1 flex items-center justify-center gap-2 p-2 rounded border border-green-600 text-green-600 hover:bg-green-50 duration-200'
           >
-            <Check size={12} /> Correct
+            <Check size={14} /> Done
           </button>
           <button
             onClick={() => handleConfirm(false)}
             className='flex-1 flex items-center justify-center gap-2 p-2 rounded border border-red-600 text-red-600 hover:bg-red-50 duration-200'
           >
-            <X size={12} /> Wrong
+            <X size={14} /> Not Done
           </button>
         </div>
       )}

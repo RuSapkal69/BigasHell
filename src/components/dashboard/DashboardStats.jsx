@@ -5,7 +5,7 @@ import { Activity, Calendar, Clock, Dumbbell } from 'lucide-react';
 export default function DashboardStats() {
   const { user } = useAuth();
   const [stats, setStats] = useState({
-    workoutsCompleted: 0,
+    numberofMusclesHitted: 0,
     exercisesDone: 0,
     totalSets: 0,
     totalTime: 0,
@@ -20,7 +20,7 @@ export default function DashboardStats() {
           // Replace with actual API call
           setTimeout(() => {
             setStats({
-              workoutsCompleted: 12,
+              numberofMusclesHitted: 12,
               exercisesDone: 86,
               totalSets: 320,
               totalTime: 1080, // in minutes
@@ -48,8 +48,8 @@ export default function DashboardStats() {
 
   const statCards = [
     {
-      title: "Workouts",
-      value: stats.workoutsCompleted,
+      title: "Muscle Groups Hitted",
+      value: stats.numberofMusclesHitted,
       icon: <Activity className="h-6 w-6 text-red-500" />,
       bgColor: "bg-gray-900",
     },
