@@ -1,11 +1,24 @@
 import React, {useState} from 'react';
+import { Check, X } from 'lucide-react'
 
 const ExerciseCard = (props) => {
   const { exercise, i } = props;
   const [setsCompleted, setSetsCompleted] = useState(0);
+  const [setConfirmed, setSetConfirmed] = useState(null) // null, true, false
 
   function handleSetIncrement() {
     setSetsCompleted((setsCompleted + 1) % 6)
+    setSetConfirmed(null)
+  }
+
+  const handleConfirm = (isCorrect) => {
+    if (isCorrect) {
+      setSetConfirmed(true)
+    } else {
+      // reset to show increment option again
+      setSetsCompleted(0)
+      setSetConfirmed(null)
+    }
   }
 
   return (
@@ -55,13 +68,41 @@ const ExerciseCard = (props) => {
               <p className="font-medium">{exercise[info]}</p>
             </div>
           ))}
-          <button onClick={handleSetIncrement} className='flex flex-col p-2 rounded border-[1.5px] 
-          duration-200 border-solid border-blue-900 hover:border-blue-600 w-full duration-200'>
-            <h3 className='capitalize text-sm text-slate-400'>
-                sets Completed
-            </h3>
-            <p className='font-medium'>{setsCompleted} / 5</p>
+          {setsCompleted < 5 && (
+        <button
+          onClick={handleSetIncrement}
+          className='flex flex-col p-2 rounded border-[1.5px] 
+            border-solid border-blue-900 hover:border-blue-600 w-full duration-200'
+        >
+          <h3 className='capitalize text-sm text-slate-400'>sets Completed</h3>
+          <p className='font-medium'>{setsCompleted} / 5</p>
+        </button>
+      )}
+
+      {setsCompleted === 5 && setConfirmed === null && (
+        <div className='flex justify-between gap-2'>
+          <button
+            onClick={() => handleConfirm(true)}
+            className='flex-1 flex items-center justify-center gap-2 p-2 rounded border border-green-600 text-green-600 hover:bg-green-50 duration-200'
+          >
+            <Check size={12} /> Correct
           </button>
+          <button
+            onClick={() => handleConfirm(false)}
+            className='flex-1 flex items-center justify-center gap-2 p-2 rounded border border-red-600 text-red-600 hover:bg-red-50 duration-200'
+          >
+            <X size={12} /> Wrong
+          </button>
+        </div>
+      )}
+
+      {setConfirmed === true && (
+        <div
+          className='flex flex-col p-2 rounded border-[1.5px] border-green-700 w-full bg-green-50 text-green-700 duration-200'
+        >
+          <h3 className='font-semibold capitalize text-sm'>Set Completed</h3>
+        </div>
+      )}
         </div>
       </div>
     </div>
