@@ -26,7 +26,7 @@ export default function Exploration() {
                 <br /> Never Exited.
             </h1>
             
-            <p className="text-lg md:text-xl mb-8 text-blue-50 font-light">
+            <p className="text-lg md:text-xl mb-8 text-white font-light">
               Unlimited Services, personal Demons, Classes, exclusive amenities to recover from torture, and more.
             </p>
             
