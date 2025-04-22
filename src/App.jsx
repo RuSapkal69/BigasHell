@@ -5,6 +5,7 @@ import Workout from "./components/Workout"
 import { generateWorkout } from "./utils/functions"
 import "./index.css"
 import Footer from "./components/Footer"
+import Exploration from "./components/Exploration"
 
 function App() {
   const [workout, setWorkout] = useState(null)
@@ -25,6 +26,9 @@ function App() {
     <div className="min-h-screen">
       <section id="home">
         <Hero />
+      </section>
+      <section>
+        <Exploration />
       </section>
       <section id="generate" className="bg-gradient-to-br from-black via-blue-900 to-black">
         <Generator
