@@ -10,17 +10,17 @@ export default function Exploration() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url('/HellGym_1.jpg')`,
-          filter: 'brightness(1.0)',
+          filter: 'brightness(0.9)',
         }}
       ></div>
       
       {/* Overlay to enhance text visibility */}
       <div className="absolute inset-0 bg-black bg-opacity-20"></div>
 
-      {/* Content Container */}
-      <div className="relative h-full flex items-center">
-        <div className="container mx-auto px-4 md:px-8 lg:px-16">
-          <div className="max-w-lg md:ml-8 lg:ml-16 p-6 md:p-8 bg-black bg-opacity-40 backdrop-blur-sm rounded-lg text-white">
+      {/* Content Container - Positioned top-left with margins */}
+      <div className="relative h-full">
+        <div className="absolute top-0 left-0 pt-16 pl-6 md:pt-20 md:pl-12 lg:pt-24 lg:pl-16">
+          <div className="max-w-lg p-6 md:p-8 bg-black bg-opacity-40 backdrop-blur-sm rounded-lg text-white">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-blue-100">
               Welcome to our Beautiful Hell
             </h1>
@@ -41,9 +41,10 @@ export default function Exploration() {
               >
                 Explore Membership
                 <span 
-                  className={`absolute left-0 bottom-0 w-full h-0.5 
-                    ${isHovered ? 'bg-blue-300 w-full' : 'bg-blue-200'}
-                    transition-all duration-300 ease-in-out`}
+                  className={`absolute left-0 bottom-0 h-0.5 
+                    bg-blue-300
+                    transition-all duration-500 ease-in-out
+                    ${isHovered ? 'w-full' : 'w-0'}`}
                 ></span>
               </span>
             </div>
