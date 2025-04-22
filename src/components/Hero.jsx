@@ -30,8 +30,8 @@ const Hero = () => {
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/BigasHell.jpg')`, // You'll need to add this image to your public folder
-          filter: 'brightness(0.6) blur(2px)'
+          backgroundImage: `url('/BigasHell-_quality.jpg')`, // You'll need to add this image to your public folder
+          filter: 'brightness(0.9)'
         }}
       ></div>
       
