@@ -6,6 +6,7 @@ import { generateWorkout } from "./utils/functions"
 import "./index.css"
 import Footer from "./components/Footer"
 import Exploration from "./components/Exploration"
+import Features from "./components/Features"
 
 function App() {
   const [workout, setWorkout] = useState(null)
@@ -29,6 +30,9 @@ function App() {
       </section>
       <section>
         <Exploration />
+      </section>
+      <section>
+        <Features />
       </section>
       <section id="generate" className="bg-gradient-to-br from-black via-blue-900 to-black">
         <Generator
