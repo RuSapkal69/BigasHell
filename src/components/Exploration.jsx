@@ -9,24 +9,25 @@ export default function Exploration() {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/HellGym_1.jpg')`,
-          filter: 'brightness(0.9)',
+          backgroundImage: `url('/HellGym_1_quality.jpg')`,
+          filter: 'brightness(1.0)',
         }}
       ></div>
       
       {/* Overlay to enhance text visibility */}
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-10"></div>
 
       {/* Content Container - Positioned top-left with margins */}
       <div className="relative h-full">
         <div className="absolute top-0 left-0 pt-16 pl-6 md:pt-20 md:pl-12 lg:pt-24 lg:pl-16">
           <div className="max-w-lg p-6 md:p-8 bg-black bg-opacity-40 backdrop-blur-sm rounded-lg text-white">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-blue-100">
-              Welcome to our Beautiful Hell
+            <h1 className="text-2xl md:text-4xl lg:text-4xl font-semibold mb-4 text-blue-100">
+              Once Entered.
+                <br /> Never Exited.
             </h1>
             
             <p className="text-lg md:text-xl mb-8 text-blue-50 font-light">
-              Unlimited Services, personal demons, classes, exclusive amenities to recover
+              Unlimited Services, personal Demons, Classes, exclusive amenities to recover from torture, and more.
             </p>
             
             <div 
