@@ -107,7 +107,7 @@ const Hero = () => {
           
           {/* Right Section: Video Container - Now Larger */}
           <motion.div 
-            className="lg:w-3/5 flex items-center justify-center mt-10 lg:mt-0 px-4"
+            className="lg:w-3/5 flex items-center justify-center mt-10 lg:mt-0 px-4 relative"
             variants={childRightVariants}
           >
             <div className="w-full aspect-video bg-black bg-opacity-40 rounded-lg border border-gray-700 shadow-2xl shadow-red-900/20">
@@ -128,7 +128,7 @@ const Hero = () => {
               {/* Audio Control Button */}
               <button 
                 onClick={toggleMute}
-                className="absolute bottom-6 right-6 md:bottom-[7rem] md:right-[5.5rem] p-3 bg-transparent text-white"
+                className="absolute bottom-20 right-2 max-sm:bottom-0 md:bottom-0 lg:bottom-20 p-5 bg-transparent text-white"
                 aria-label={isMuted ? "Unmute video" : "Mute video"}
               >
                 {isMuted ? (
