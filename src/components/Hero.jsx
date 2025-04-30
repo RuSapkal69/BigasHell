@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import NavBar from "./NavBar";
+import { Volume2, VolumeX } from 'lucide-react';
 
 // Parent and Child Variants
 const parentVariants = {
@@ -24,6 +25,26 @@ const childRightVariants = {
 };
 
 const Hero = () => {
+
+  const [isMuted, setIsMuted] = useState(true);
+    const videoRef = useRef(null);
+  
+    // Toggle mute/unmute function
+    const toggleMute = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = !videoRef.current.muted;
+        setIsMuted(!isMuted);
+      }
+    };
+  
+    // Set initial mute state when component mounts
+    useEffect(() => {
+      if (videoRef.current) {
+        videoRef.current.muted = isMuted;
+      }
+    }, []);
+  
+
   return (
     <div className="relative min-h-screen w-full">
       {/* Background Image with Overlay */}
@@ -98,10 +119,24 @@ const Hero = () => {
                   autoPlay
                   loop
                   muted
+                  playsInline
+                  ref={videoRef}
                   
                 ></video>
               </div>
             </div>
+              {/* Audio Control Button */}
+              <button 
+                onClick={toggleMute}
+                className="absolute bottom-6 right-6 md:bottom-[7rem] md:right-[5.5rem] p-3 bg-transparent text-white"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? (
+                  <VolumeX size={28} />
+                ) : (
+                  <Volume2 size={28} />
+                )}
+              </button>
           </motion.div>
         </motion.div>
       </div>
