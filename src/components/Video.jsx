@@ -45,12 +45,11 @@ const Video = () => {
         <div className="absolute top-0 left-0 pt-16 pl-6 md:pt-20 md:pl-12 lg:pt-24 lg:pl-16">
           <div className="max-w-lg p-6 md:p-8 bg-transparent rounded-lg text-white">
             <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold mb-4 text-blue-100">
-              Once Entered.
-              <br /> Never Exited.
+              Hell Full of Luxuries and Tortures.
             </h1>
             
             <p className="text-lg md:text-xl mb-8 text-white font-semibold">
-              Unlimited Services, personal Demons, Classes, exclusive amenities to recover from torture, and more.
+              State of the Art Architecture, Award-winning Spaces, Premium Experience, Pleasant environment, Luxurious Amenities, and more.
             </p>
             
             <div 
@@ -63,7 +62,7 @@ const Video = () => {
                   ${isHovered ? 'text-blue-300' : 'text-blue-200'}
                   transition-all duration-300 ease-in-out`}
               >
-                Explore Membership
+                Find Your Hell
                 <span 
                   className={`absolute left-0 bottom-0 h-0.5 
                     bg-blue-300
