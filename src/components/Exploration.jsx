@@ -20,13 +20,13 @@ export default function Exploration() {
       {/* Content Container - Positioned top-left with margins */}
       <div className="relative h-full">
         <div className="absolute top-0 left-0 pt-16 pl-6 md:pt-20 md:pl-12 lg:pt-24 lg:pl-16">
-          <div className="max-w-lg p-6 md:p-8 bg-black bg-opacity-40 backdrop-blur-sm rounded-lg text-white">
-            <h1 className="text-2xl md:text-4xl lg:text-4xl font-semibold mb-4 text-blue-100">
+          <div className="max-w-lg p-6 md:p-8 bg-transparent rounded-lg text-white">
+            <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold mb-4 text-blue-100">
               Once Entered.
                 <br /> Never Exited.
             </h1>
             
-            <p className="text-lg md:text-xl mb-8 text-white font-light">
+            <p className="text-lg md:text-xl mb-8 text-white font-semibold">
               Unlimited Services, personal Demons, Classes, exclusive amenities to recover from torture, and more.
             </p>
             

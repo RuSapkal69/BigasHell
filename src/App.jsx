@@ -7,6 +7,7 @@ import "./index.css"
 import Footer from "./components/Footer"
 import Exploration from "./components/Exploration"
 import FeatureSection from "./components/FeatureSection"
+import Video from "./components/Video"
 
 function App() {
   const [workout, setWorkout] = useState(null)
@@ -33,6 +34,9 @@ function App() {
       </section>
       <section className="min-h-screen text-white">
         <FeatureSection />
+      </section>
+      <section>
+        <Video />
       </section>
       <section id="generate" className="bg-gradient-to-br from-black via-blue-900 to-black">
         <Generator
