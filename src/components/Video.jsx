@@ -33,7 +33,7 @@ const Video = () => {
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
        
-        <source src="../public/HellGymVideo.mp4" type="video/mp4" />
+        <source src="/HellGymVideo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -79,13 +79,13 @@ const Video = () => {
       {/* Audio Control Button */}
       <button 
         onClick={toggleMute}
-        className="absolute bottom-6 right-6 md:bottom-8 md:right-8 p-3 rounded-full bg-black bg-opacity-40 text-white hover:bg-opacity-60 transition-colors duration-300"
+        className="absolute bottom-6 right-6 md:bottom-8 md:right-8 p-3 bg-transparent text-white"
         aria-label={isMuted ? "Unmute video" : "Mute video"}
       >
         {isMuted ? (
-          <VolumeX size={24} />
+          <VolumeX size={28} />
         ) : (
-          <Volume2 size={24} />
+          <Volume2 size={28} />
         )}
       </button>
     </div>
