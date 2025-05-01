@@ -20,7 +20,7 @@ export default function Exploration() {
       {/* Content Container - Positioned top-left with margins */}
       <div className="relative h-full">
         <div className="absolute top-0 left-0 pt-16 pl-6 md:pt-20 md:pl-12 lg:pt-24 lg:pl-16">
-          <div className="max-w-lg p-6 md:p-8 bg-transparent rounded-lg text-white">
+          <div className="max-w-lg p-6 md:p-8 bg-transparent rounded-lg text-white hover:backdrop-blur-sm transition-all duration-300 ease-in-out">
             <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold mb-4 text-blue-100">
               Once Entered.
                 <br /> Never Exited.
