@@ -8,6 +8,7 @@ import Footer from "./components/Footer"
 import Exploration from "./components/Exploration"
 import FeatureSection from "./components/FeatureSection"
 import Video from "./components/Video"
+import FeatureSection2 from "./components/FeatureSection2"
 
 function App() {
   const [workout, setWorkout] = useState(null)
@@ -38,7 +39,7 @@ function App() {
       <section>
         <Video />
       </section>
-      <section id="generate" className="bg-gradient-to-br from-black via-blue-900 to-black">
+      {/* <section id="generate" className="bg-gradient-to-br from-black via-blue-900 to-black">
         <Generator
           poison={poison}
           setPoison={setPoison}
@@ -53,7 +54,10 @@ function App() {
         <section id="workout" className="bg-gradient-to-br from-black via-blue-900 to-black">
           <Workout workout={workout} />
         </section>
-      )}
+      )} */}
+      <section>
+        <FeatureSection2 />
+      </section>
       <section id="footer" className="bg-black">
         <Footer />
       </section>

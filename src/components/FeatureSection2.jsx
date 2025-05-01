@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { useMediaQuery } from "../hooks/useMediaQuery"
 import FeatureItem from "./FeatureItem"
 
-const FeatureSection = () => {
+const FeatureSection2 = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const isMobileOrTablet = useMediaQuery("(max-width: 1023px)")
   const touchStartX = useRef(0)
@@ -14,14 +14,14 @@ const FeatureSection = () => {
       id: 1,
       title: "Premium Fitness Experience",
       description: "State-of-the-art equipment and facilities designed for the ultimate workout experience.",
-      image: "/HellGym_3.jpg",
+      image: "/HellGym_4.jpg",
       ctaText: "Explore Facilities",
     },
     {
       id: 2,
       title: "Expert Personal Training",
       description: "One-on-one sessions with certified trainers who will help you achieve your fitness goals.",
-      image: "https://images.pexels.com/photos/4164512/pexels-photo-4164512.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      image: "/HellGym_5.jpg",
       ctaText: "Meet Our Trainers",
     },
     {
@@ -166,4 +166,4 @@ const FeatureSection = () => {
   )
 }
 
-export default FeatureSection
+export default FeatureSection2
