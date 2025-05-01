@@ -175,12 +175,7 @@ export async function getWorkoutExercises(workoutId) {
   }
 }
 
-// Helper function for incrementing values in Firestore
-// function increment(value) {
-//   return firebase.firestore.FieldValue.increment(value);
-// }
 
-// Stats and analytics functions
 export async function getUserStats(uid) {
   try {
     const statsRef = doc(db, "stats", uid)
