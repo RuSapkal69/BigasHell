@@ -12,7 +12,7 @@ import {
   limit,
   Timestamp,
   addDoc,
-  increment,
+  increment as firestoreIncrement,
 } from "firebase/firestore"
 import "firebase/compat/firestore"
 
@@ -84,7 +84,7 @@ export async function createWorkout(uid, workoutData) {
 
     // Update user stats
     await updateUserStats(uid, {
-      workoutsCompleted: increment(1),
+      workoutsCompleted: firestoreIncrement(1),
     })
 
     return { id: docRef.id, ...workoutData }
@@ -143,12 +143,6 @@ export async function logExercise(uid, workoutId, exerciseData) {
       completedAt: Timestamp.now(),
     })
 
-    // Update user stats
-    await updateUserStats(uid, {
-      exercisesDone: increment(1),
-      totalSets: increment(exerciseData.sets || 1),
-    })
-
     return { id: docRef.id, ...exerciseData }
   } catch (error) {
     console.error("Error logging exercise:", error)
@@ -175,7 +169,6 @@ export async function getWorkoutExercises(workoutId) {
   }
 }
 
-
 export async function getUserStats(uid) {
   try {
     const statsRef = doc(db, "stats", uid)
@@ -186,7 +179,7 @@ export async function getUserStats(uid) {
     } else {
       // Initialize stats if they don't exist
       const initialStats = {
-        workoutsCompleted: 0,
+        numberofMusclesHitted: 0,
         exercisesDone: 0,
         totalSets: 0,
         totalTime: 0,
@@ -203,13 +196,85 @@ export async function getUserStats(uid) {
   }
 }
 
-export async function updateUserStats(uid, statsData) {
+export async function updateUserStats(uid, statsData, muscleGroupsData = null) {
   try {
     const statsRef = doc(db, "stats", uid)
-    await updateDoc(statsRef, {
-      ...statsData,
-      updatedAt: Timestamp.now(),
-    })
+    const docSnap = await getDoc(statsRef)
+
+    if (docSnap.exists()) {
+      // Update existing stats
+      const updateData = {}
+
+      // Use Firestore increment for numerical values
+      if (statsData.exercisesDone) {
+        updateData.exercisesDone = firestoreIncrement(statsData.exercisesDone)
+      }
+
+      if (statsData.totalSets) {
+        updateData.totalSets = firestoreIncrement(statsData.totalSets)
+      }
+
+      if (statsData.totalTime) {
+        updateData.totalTime = firestoreIncrement(statsData.totalTime)
+      }
+
+      updateData.updatedAt = Timestamp.now()
+
+      // If we have muscle group data to update
+      if (muscleGroupsData) {
+        const currentStats = docSnap.data()
+        const currentMuscleGroups = currentStats.muscleGroups || {}
+        const updatedMuscleGroups = { ...currentMuscleGroups }
+
+        // Update each muscle group
+        for (const [muscle, data] of Object.entries(muscleGroupsData)) {
+          if (!updatedMuscleGroups[muscle]) {
+            updatedMuscleGroups[muscle] = { sets: 0, time: 0 }
+          }
+
+          // Add sets and time to this muscle group
+          updatedMuscleGroups[muscle].sets = (updatedMuscleGroups[muscle].sets || 0) + data.sets
+          updatedMuscleGroups[muscle].time = (updatedMuscleGroups[muscle].time || 0) + data.time
+        }
+
+        // Count unique muscle groups hit
+        updateData.numberofMusclesHitted = Object.keys(updatedMuscleGroups).length
+
+        // Update the muscle groups data
+        updateData.muscleGroups = updatedMuscleGroups
+      }
+
+      // Update the document
+      await updateDoc(statsRef, updateData)
+    } else {
+      // Create new stats document
+      const initialStats = {
+        numberofMusclesHitted: 0,
+        exercisesDone: statsData.exercisesDone || 0,
+        totalSets: statsData.totalSets || 0,
+        totalTime: statsData.totalTime || 0,
+        muscleGroups: {},
+        updatedAt: Timestamp.now(),
+      }
+
+      // If we have muscle group data
+      if (muscleGroupsData) {
+        const muscleGroups = {}
+
+        // Initialize each muscle group
+        for (const [muscle, data] of Object.entries(muscleGroupsData)) {
+          muscleGroups[muscle] = {
+            sets: data.sets || 0,
+            time: data.time || 0,
+          }
+        }
+
+        initialStats.muscleGroups = muscleGroups
+        initialStats.numberofMusclesHitted = Object.keys(muscleGroups).length
+      }
+
+      await setDoc(statsRef, initialStats)
+    }
 
     return { success: true }
   } catch (error) {
