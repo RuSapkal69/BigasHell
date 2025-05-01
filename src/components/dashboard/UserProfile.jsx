@@ -1,8 +1,8 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import { useAuth } from "../../utils/auth-context"
 import { User, Edit, Calendar, Dumbbell, Briefcase, Weight, Ruler, Heart } from "lucide-react"
+import { getUser } from "../../utils/db"
+import { formatDate } from "../../utils/date"
 
 export default function UserProfile() {
   const { user } = useAuth()
@@ -10,26 +10,19 @@ export default function UserProfile() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // In a real app, you would fetch this data from your API
     const fetchProfile = async () => {
       if (user) {
         try {
-          // Replace with actual API call to get user profile
-          // For now using mock data
-          setTimeout(() => {
-            setProfile({
-              name: "John Doe",
-              age: 28,
-              gender: "male",
-              experience: "intermediate",
-              profession: "Software Engineer",
-              weight: 75,
-              height: 180,
-              medicalConditions: "None",
-              joinDate: "2023-01-15",
-            })
-            setLoading(false)
-          }, 1000)
+          setLoading(true)
+          // Get actual user data from Firebase
+          const userData = await getUser(user.uid)
+
+          if (userData) {
+            setProfile(userData)
+          } else {
+            console.error("No user data found")
+          }
+          setLoading(false)
         } catch (error) {
           console.error("Error fetching profile:", error)
           setLoading(false)
@@ -41,7 +34,7 @@ export default function UserProfile() {
   }, [user])
 
   const calculateBMI = () => {
-    if (!profile) return "N/A"
+    if (!profile || !profile.height || !profile.weight) return "N/A"
 
     const heightInMeters = profile.height / 100
     const bmi = (profile.weight / (heightInMeters * heightInMeters)).toFixed(1)
@@ -53,14 +46,6 @@ export default function UserProfile() {
     else category = "Obese"
 
     return `${bmi} (${category})`
-  }
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
   }
 
   const experienceText = {
@@ -83,6 +68,27 @@ export default function UserProfile() {
     )
   }
 
+  if (!profile) {
+    return (
+      <div className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800 h-full">
+        <div className="flex items-center mb-6">
+          <User className="h-5 w-5 text-red-500 mr-2" />
+          <h2 className="text-xl font-bold text-white">User Profile</h2>
+        </div>
+        <div className="flex justify-center items-center h-64">
+          <div className="text-gray-400">Profile data not available</div>
+        </div>
+      </div>
+    )
+  }
+
+  // Use createdAt from profile or fallback to current date
+  const memberSince = profile.createdAt
+    ? profile.createdAt.toDate
+      ? profile.createdAt.toDate()
+      : new Date(profile.createdAt)
+    : new Date()
+
   return (
     <div className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800">
       <div className="flex items-center justify-between mb-6">
@@ -103,7 +109,7 @@ export default function UserProfile() {
             </div>
             <div>
               <p className="text-gray-400 text-xs">Name</p>
-              <p className="text-white font-medium">{profile.name}</p>
+              <p className="text-white font-medium">{profile.name || "Not provided"}</p>
             </div>
           </div>
 
@@ -113,7 +119,7 @@ export default function UserProfile() {
             </div>
             <div>
               <p className="text-gray-400 text-xs">Age</p>
-              <p className="text-white font-medium">{profile.age} years</p>
+              <p className="text-white font-medium">{profile.age ? `${profile.age} years` : "Not provided"}</p>
             </div>
           </div>
 
@@ -123,7 +129,9 @@ export default function UserProfile() {
             </div>
             <div>
               <p className="text-gray-400 text-xs">Experience Level</p>
-              <p className="text-white font-medium">{experienceText[profile.experience]}</p>
+              <p className="text-white font-medium">
+                {profile.experience ? experienceText[profile.experience] : "Not provided"}
+              </p>
             </div>
           </div>
 
@@ -133,7 +141,7 @@ export default function UserProfile() {
             </div>
             <div>
               <p className="text-gray-400 text-xs">Profession</p>
-              <p className="text-white font-medium">{profile.profession}</p>
+              <p className="text-white font-medium">{profile.profession || "Not provided"}</p>
             </div>
           </div>
         </div>
@@ -145,7 +153,7 @@ export default function UserProfile() {
             </div>
             <div>
               <p className="text-gray-400 text-xs">Weight</p>
-              <p className="text-white font-medium">{profile.weight} kg</p>
+              <p className="text-white font-medium">{profile.weight ? `${profile.weight} kg` : "Not provided"}</p>
             </div>
           </div>
 
@@ -155,7 +163,7 @@ export default function UserProfile() {
             </div>
             <div>
               <p className="text-gray-400 text-xs">Height</p>
-              <p className="text-white font-medium">{profile.height} cm</p>
+              <p className="text-white font-medium">{profile.height ? `${profile.height} cm` : "Not provided"}</p>
             </div>
           </div>
 
@@ -175,7 +183,7 @@ export default function UserProfile() {
             </div>
             <div>
               <p className="text-gray-400 text-xs">Member Since</p>
-              <p className="text-white font-medium">{formatDate(profile.joinDate)}</p>
+              <p className="text-white font-medium">{formatDate(memberSince)}</p>
             </div>
           </div>
         </div>
