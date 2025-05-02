@@ -96,11 +96,11 @@ const Hero = () => {
             <motion.div variants={childLeftVariants}>
               <button
                 onClick={() => {
-                  window.location.href = "#generate";
+                  window.location.href = "#explore";
                 }}
                 className="text-white text-lg font-bold px-6 py-3 bg-red-600 rounded-lg shadow-lg shadow-red-500/50 hover:shadow-red-700/70 hover:bg-red-700 hover:scale-105 transition-transform duration-300"
               >
-                Accept & Enter the Hell
+                Explore
               </button>
             </motion.div>
           </motion.div>
