@@ -129,7 +129,7 @@ export default function TimeSpent() {
       </div>
 
       {timeData.length > 0 ? (
-        <div className="h-64">
+        <div className="h-[14rem]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
