@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import { Home, Dumbbell, MessageCircle, User, Menu, X, LayoutDashboard, LogOut } from "lucide-react"
 import { useAuth } from "../utils/auth-context"
