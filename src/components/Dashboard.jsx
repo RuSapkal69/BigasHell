@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../utils/auth-context"
@@ -11,6 +9,7 @@ import MuscleGroupProgress from "./dashboard/MuscleGroupProgress"
 import TimeSpent from "./dashboard/TimeSpent"
 import UpcomingWorkouts from "./dashboard/UpcomingWorkouts"
 import UserProfile from "./dashboard/UserProfile"
+import Motivate from "./Motivate"
 
 export default function Dashboard() {
   const navigate = useNavigate()
@@ -70,7 +69,11 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <WorkoutHistory />
+          
+          <div className="grid grid-flow-row">
           <TimeSpent />
+          <Motivate />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-8">
