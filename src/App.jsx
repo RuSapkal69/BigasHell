@@ -9,6 +9,7 @@ import Exploration from "./components/Exploration"
 import FeatureSection from "./components/FeatureSection"
 import Video from "./components/Video"
 import FeatureSection2 from "./components/FeatureSection2"
+import Testimonial from "./components/Testimonial"
 
 function App() {
   const [workout, setWorkout] = useState(null)
@@ -57,6 +58,9 @@ function App() {
       )} */}
       <section>
         <FeatureSection2 />
+      </section>
+      <section>
+        <Testimonial />
       </section>
       <section id="footer" className="bg-black">
         <Footer />
