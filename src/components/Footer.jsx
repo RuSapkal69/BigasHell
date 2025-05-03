@@ -63,7 +63,6 @@ const Footer = () => {
           <h3 className="text-lg font-semibold">Support</h3>
           <ul className="space-y-2">
             <li className="flex items-center space-x-2">
-              <HelpCircle size={16} className="text-red-600" />
               <a href="#faq" className="text-gray-400 hover:text-white transition-colors">
                 FAQ
               </a>
@@ -96,7 +95,6 @@ const Footer = () => {
           <h3 className="text-lg font-semibold">Legal</h3>
           <ul className="space-y-2">
             <li className="flex items-center space-x-2">
-              <ShieldCheck size={16} className="text-red-600" />
               <a href="#privacy" className="text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
               </a>
@@ -134,12 +132,12 @@ const Footer = () => {
             </li>
             <li className="flex items-center space-x-2">
               <Phone size={16} className="text-red-600" />
-              <span className="text-gray-400">+1 (555) 123-4567</span>
+              <span className="text-gray-400">+91 1234567890</span>
             </li>
             <li className="text-gray-400">
-              123 Inferno Street
+              Vimaan Nagar,
               <br />
-              Hades City, HE 66666
+              Pune City, India
             </li>
           </ul>
         </div>
@@ -147,6 +145,8 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} HELLGYM. All rights reserved.
+        <br />
+        <span className="text-gray-400">Designed by Rushikesh Sapkal</span>
       </div>
     </footer>
   )
