@@ -27,13 +27,13 @@ export default function Testimonials() {
       {
         name: "James Wilson",
         role: "Member since 2022",
-        image: "/images/testimonial-1.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-b-_N-na2JFF5UQHeGXLqBZ2ORwNRJKBryw&s",
         content: "The personalized workout plans completely transformed my fitness journey. I've lost 30 pounds in 6 months and feel stronger than ever!",
       },
       {
         name: "Sarah Martinez",
         role: "Fitness Enthusiast",
-        image: "/images/testimonial-2.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5cmcyRMCK2wEHY213hPirrYO4lmOhwaU3kg&s",
         content: "The exercise tracking feature helps me stay accountable. I love how the app adjusts my routine based on my progress data.",
       }
     ],
@@ -41,13 +41,13 @@ export default function Testimonials() {
       {
         name: "David Chen",
         role: "Marathon Runner",
-        image: "/images/testimonial-3.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiH7-037jcHshVoPr9OtJk3J-Tqg9RT4298g&s",
         content: "As someone who trains for competitions, the detailed analytics helped me improve my performance metrics by 15%. Couldn't have done it without this app!",
       },
       {
         name: "Lisa Johnson",
         role: "Working Professional",
-        image: "/images/testimonial-4.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_LyGVuIJECvwnRj5CzA5C8GKQkJgTaz-cUA&s",
         content: "The quick workout recommendations fit perfectly into my busy schedule. I can finally maintain consistency in my fitness routine despite long work hours.",
       }
     ],
@@ -55,13 +55,13 @@ export default function Testimonials() {
       {
         name: "Michael Brown",
         role: "Recovery Patient",
-        image: "/images/testimonial-5.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZs49I8IIeZOTl-NN35wO1RecnRF0R5qH9Hw&s",
         content: "After my injury, the app's adaptive exercises helped me rebuild strength safely. My physical therapist is impressed with my progress!",
       },
       {
         name: "Emma Taylor",
         role: "New Mom",
-        image: "/images/testimonial-6.jpg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRggUwDSbTMq4hsqrO1xWXoTRJnSjXLmcNj3w&s",
         content: "The postpartum workout plan was exactly what I needed. I appreciate how the app adjusts based on my energy levels and available time.",
       }
     ]
