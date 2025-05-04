@@ -1,63 +1,78 @@
-import { useEffect, useState } from "react";
-import { useAuth } from "../../utils/auth-context";
-import { Calendar, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { Calendar, ChevronRight } from "lucide-react"
+import { useAuth } from "../../utils/auth-context"
+import { getScheduledWorkouts, hasScheduledWorkouts } from "../../utils/db"
+import { formatDate } from "../../utils/date"
 
 export default function UpcomingWorkouts() {
-  const { user } = useAuth();
-  const [workouts, setWorkouts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const [workouts, setWorkouts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [hasSchedule, setHasSchedule] = useState(false)
 
   useEffect(() => {
-    // In a real app, you would fetch this data from your API
-    const fetchUpcomingWorkouts = async () => {
-      if (user) {
-        try {
-          // Simulating API call with mock data
-          // Replace with actual API call
-          setTimeout(() => {
-            setWorkouts([
-              {
-                id: "1",
-                date: "2023-04-18",
-                type: "Push",
-                muscleGroups: ["chest", "shoulders", "triceps"],
-                time: "07:00 AM",
-              },
-              {
-                id: "2",
-                date: "2023-04-20",
-                type: "Pull",
-                muscleGroups: ["back", "biceps"],
-                time: "06:30 AM",
-              },
-              {
-                id: "3",
-                date: "2023-04-22",
-                type: "Legs",
-                muscleGroups: ["quads", "hamstrings", "calves"],
-                time: "08:00 AM",
-              },
-            ]);
-            setLoading(false);
-          }, 1000);
-        } catch (error) {
-          console.error("Error fetching upcoming workouts:", error);
-          setLoading(false);
+    fetchUpcomingWorkouts()
+  }, [user])
+
+  const fetchUpcomingWorkouts = async () => {
+    if (user) {
+      try {
+        setLoading(true)
+
+        // Check if user has scheduled workouts
+        const hasSchedule = await hasScheduledWorkouts(user.uid)
+        setHasSchedule(hasSchedule)
+
+        if (hasSchedule) {
+          // Get scheduled workouts from Firebase
+          const scheduledWorkouts = await getScheduledWorkouts(user.uid)
+
+          // Process the workouts for display
+          const processedWorkouts = scheduledWorkouts.map((workout) => {
+            // Get the current date
+            const today = new Date()
+            const currentDayIndex = today.getDay() // 0 = Sunday, 1 = Monday, etc.
+
+            // Calculate days until this workout
+            let daysUntil = workout.dayIndex - currentDayIndex
+            if (daysUntil <= 0) daysUntil += 7 // If in the past, schedule for next week
+
+            // Calculate the date for this workout
+            const workoutDate = new Date(today)
+            workoutDate.setDate(today.getDate() + daysUntil)
+
+            return {
+              id: workout.id,
+              date: workoutDate.toISOString().split("T")[0],
+              type: workout.workoutType,
+              muscleGroups: workout.muscleGroups || [],
+              time: workout.time,
+              day: workout.day,
+            }
+          })
+
+          // Sort by date
+          processedWorkouts.sort((a, b) => new Date(a.date) - new Date(b.date))
+
+          setWorkouts(processedWorkouts)
+        } else {
+          setWorkouts([])
         }
+
+        setLoading(false)
+      } catch (error) {
+        console.error("Error fetching upcoming workouts:", error)
+        setWorkouts([])
+        setLoading(false)
       }
-    };
+    }
+  }
 
-    fetchUpcomingWorkouts();
-  }, [user]);
-
-  const formatDate = (dateString) => {
-    const options = {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
+  const handleScheduleClick = () => {
+    navigate("/workout-schedule")
+  }
 
   if (loading) {
     return (
@@ -70,24 +85,38 @@ export default function UpcomingWorkouts() {
           <div className="animate-pulse text-gray-400">Loading upcoming workouts...</div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
-    <div className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800 h-full">
+    <div className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800 h-full mt-10">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
           <Calendar className="h-5 w-5 text-red-500 mr-2" />
           <h2 className="text-xl font-bold text-white">Upcoming Workouts</h2>
         </div>
-        <button className="text-sm text-red-500 hover:text-red-400">Schedule</button>
+        <button className="text-sm text-red-500 hover:text-red-400" onClick={handleScheduleClick}>
+          {hasSchedule ? "Edit Schedule" : "Schedule"}
+        </button>
       </div>
 
       {workouts.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-64 text-gray-400">
-          <p>No upcoming workouts scheduled</p>
-          <button className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
-            Schedule Workout
+          {hasSchedule ? (
+            <p>No upcoming workouts scheduled</p>
+          ) : (
+            <>
+              <p className="text-center mb-4">
+                Welcome to <span className="text-red-600 font-bold">HELLGYM</span>!
+              </p>
+              <p className="text-center mb-6">Make sure to schedule your workouts day-wise with proper timing.</p>
+            </>
+          )}
+          <button
+            className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+            onClick={handleScheduleClick}
+          >
+            {hasSchedule ? "Edit Workout Schedule" : "Schedule Workouts"}
           </button>
         </div>
       ) : (
@@ -102,7 +131,9 @@ export default function UpcomingWorkouts() {
                   <span className="text-white font-bold">{workout.type.substring(0, 1)}</span>
                 </div>
                 <div>
-                  <p className="text-white font-medium">{workout.type} Day</p>
+                  <p className="text-white font-medium">
+                    {workout.day} - {workout.type}
+                  </p>
                   <div className="flex items-center mt-1">
                     <p className="text-gray-400 text-sm">{formatDate(workout.date)}</p>
                     <span className="mx-2 text-gray-600">•</span>
@@ -110,11 +141,27 @@ export default function UpcomingWorkouts() {
                   </div>
                 </div>
               </div>
-              <ChevronRight className="h-5 w-5 text-gray-400" />
+              <div className="flex items-center">
+                {workout.muscleGroups && workout.muscleGroups.length > 0 && (
+                  <div className="flex mr-4">
+                    {workout.muscleGroups.slice(0, 3).map((muscle, idx) => (
+                      <span key={idx} className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded mr-1">
+                        {muscle}
+                      </span>
+                    ))}
+                    {workout.muscleGroups.length > 3 && (
+                      <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
+                        +{workout.muscleGroups.length - 3}
+                      </span>
+                    )}
+                  </div>
+                )}
+                <ChevronRight className="h-5 w-5 text-gray-400" />
+              </div>
             </div>
           ))}
         </div>
       )}
     </div>
-  );
+  )
 }

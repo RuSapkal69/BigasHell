@@ -13,6 +13,7 @@ import {
   Timestamp,
   addDoc,
   increment as firestoreIncrement,
+  deleteDoc,
 } from "firebase/firestore"
 import "firebase/compat/firestore"
 
@@ -279,6 +280,103 @@ export async function updateUserStats(uid, statsData, muscleGroupsData = null) {
     return { success: true }
   } catch (error) {
     console.error("Error updating user stats:", error)
+    throw error
+  }
+}
+
+// Workout Schedule functions
+export async function hasScheduledWorkouts(uid) {
+  try {
+    const schedulesRef = collection(db, "workout_schedules")
+    const q = query(schedulesRef, where("userId", "==", uid))
+    const querySnapshot = await getDocs(q)
+
+    return !querySnapshot.empty
+  } catch (error) {
+    console.error("Error checking scheduled workouts:", error)
+    return false
+  }
+}
+
+export async function getScheduledWorkouts(uid) {
+  try {
+    const schedulesRef = collection(db, "workout_schedules")
+    const q = query(schedulesRef, where("userId", "==", uid), orderBy("dayIndex", "asc"))
+
+    const querySnapshot = await getDocs(q)
+    const schedules = []
+
+    querySnapshot.forEach((doc) => {
+      schedules.push({ id: doc.id, ...doc.data() })
+    })
+
+    return schedules
+  } catch (error) {
+    console.error("Error getting scheduled workouts:", error)
+    throw error
+  }
+}
+
+export async function saveWorkoutSchedule(uid, scheduleData) {
+  try {
+    const schedulesRef = collection(db, "workout_schedules")
+
+    // First, delete any existing schedules for this user
+    const existingSchedules = await getScheduledWorkouts(uid)
+    for (const schedule of existingSchedules) {
+      await deleteDoc(doc(db, "workout_schedules", schedule.id))
+    }
+
+    // Then save the new schedules
+    const savedSchedules = []
+
+    for (const daySchedule of scheduleData) {
+      const docRef = await addDoc(schedulesRef, {
+        userId: uid,
+        ...daySchedule,
+        createdAt: Timestamp.now(),
+      })
+
+      savedSchedules.push({ id: docRef.id, ...daySchedule })
+    }
+
+    return savedSchedules
+  } catch (error) {
+    console.error("Error saving workout schedule:", error)
+    throw error
+  }
+}
+
+export async function getWorkoutHistoryFromSchedule(uid) {
+  try {
+    // Get current date
+    const today = new Date()
+    const currentDayIndex = today.getDay() // 0 = Sunday, 1 = Monday, etc.
+
+    // Get all scheduled workouts
+    const schedules = await getScheduledWorkouts(uid)
+
+    // Filter to only include workouts that would have happened before today
+    const pastWorkouts = schedules
+      .filter((schedule) => schedule.dayIndex < currentDayIndex)
+      .map((schedule) => {
+        // Calculate the date this workout would have happened
+        const workoutDate = new Date(today)
+        workoutDate.setDate(today.getDate() - (currentDayIndex - schedule.dayIndex))
+
+        return {
+          id: schedule.id,
+          date: workoutDate.toISOString().split("T")[0],
+          type: schedule.workoutType,
+          day: schedule.day,
+          time: schedule.time,
+        }
+      })
+      .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date, most recent first
+
+    return pastWorkouts
+  } catch (error) {
+    console.error("Error getting workout history from schedule:", error)
     throw error
   }
 }

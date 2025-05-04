@@ -41,7 +41,7 @@ const Motivate = () => {
   }, [nextQuote]);
 
   return (
-    <div className="relative rounded-lg p-3 shadow-lg border border-gray-800 h-full overflow-hidden">
+    <div className="relative rounded-lg p-10 shadow-lg border border-gray-800 h-full overflow-hidden">
       {/* SVG Gradient Background */}
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
@@ -84,7 +84,7 @@ const Motivate = () => {
         <div className="relative h-[80px] flex items-center justify-center mt-10">
           <button 
             onClick={prevQuote}
-            className="absolute left-0 top-[65%] -translate-y-1/2 bg-gray-800/70 hover:bg-gray-700 p-1 rounded-full text-white hover:text-white transition-colors z-10"
+            className="absolute -left-6 top-[25%] -translate-y-1/2 bg-gray-800/70 hover:bg-gray-700 p-1 rounded-full text-white hover:text-white transition-colors z-10"
             aria-label="Previous quote"
           >
             <ChevronLeft size={20} />
@@ -99,7 +99,7 @@ const Motivate = () => {
           
           <button 
             onClick={nextQuote}
-            className="absolute right-0 top-[65%] -translate-y-1/2 bg-gray-800/70 hover:bg-gray-700 p-1 rounded-full text-white hover:text-white transition-colors z-10"
+            className="absolute -right-6 top-[25%] -translate-y-1/2 bg-gray-800/70 hover:bg-gray-700 p-1 rounded-full text-white hover:text-white transition-colors z-10"
             aria-label="Next quote"
           >
             <ChevronRight size={20} />
