@@ -41,16 +41,15 @@ const Motivate = () => {
   }, [nextQuote]);
 
   return (
-    <div className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800 h-full">
-      <div className="flex items-center mb-4">
+    <div className="bg-gray-900 rounded-lg p-3 shadow-lg border border-gray-800 h-full">
+      {/* <div className="flex items-center mb-4">
         <Quote className="h-5 w-5 text-red-500 mr-2" />
         <h2 className="text-xl font-bold text-white">Daily Motivation</h2>
-      </div>
-      
-      <div className="relative h-[120px] flex items-center justify-center">
+      </div> */}
+      <div className="relative h-[80px] flex items-center justify-center mt-10">
         <button 
           onClick={prevQuote}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 p-1 rounded-full text-gray-300 hover:text-white transition-colors z-10"
+          className="absolute left-0 top-[65%] -translate-y-1/2 bg-gray-800 hover:bg-gray-700 p-1 rounded-full text-gray-300 hover:text-white transition-colors z-10"
           aria-label="Previous quote"
         >
           <ChevronLeft size={20} />
@@ -64,7 +63,7 @@ const Motivate = () => {
         
         <button 
           onClick={nextQuote}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 p-1 rounded-full text-gray-300 hover:text-white transition-colors z-10"
+          className="absolute right-0 top-[65%] -translate-y-1/2 bg-gray-800 hover:bg-gray-700 p-1 rounded-full text-gray-300 hover:text-white transition-colors z-10"
           aria-label="Next quote"
         >
           <ChevronRight size={20} />
