@@ -20,7 +20,7 @@ export default function MotivationalQuotes() {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center z-[-1] opacity-40"
-        style={{ backgroundImage: "url('/BigasHell.jpg')" }}
+        style={{ backgroundImage: "url('/BigasHell-_quality.jpg')" }}
       ></div>
 
       <div className="relative z-10 max-w-lg text-center px-6">
