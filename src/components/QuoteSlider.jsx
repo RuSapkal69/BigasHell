@@ -11,7 +11,7 @@ const QuoteSlider = ({ quote, author, isVisible }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          className="text-center w-full px-6"
+          className="text-center w-full px-6 mb-10"
         >
           <div className="flex justify-center mb-2">
             <Quote className="h-5 w-5 text-white" />

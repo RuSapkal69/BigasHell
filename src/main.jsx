@@ -7,6 +7,7 @@ import Auth from "./components/Auth"
 import Dashboard from "./components/Dashboard"
 import InfoPage from "./components/InfoPage"
 import GenerateWorkouts from "./components/GenerateWorkouts"
+import WorkoutSchedule from "./components/WorkoutSchedule"
 import ProtectedRoute from "./components/ProtectedRoute"
 import "./index.css"
 
@@ -38,6 +39,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={
               <ProtectedRoute requireProfile={true}>
                 <GenerateWorkouts />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/workout-schedule"
+            element={
+              <ProtectedRoute requireProfile={true}>
+                <WorkoutSchedule />
               </ProtectedRoute>
             }
           />

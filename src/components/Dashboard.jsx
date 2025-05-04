@@ -80,7 +80,7 @@ export default function Dashboard() {
           <UpcomingWorkouts />
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-24 flex justify-center">
           <a
             href="/generate-workouts"
             className="px-6 py-3 bg-red-600 text-white font-bold rounded-lg shadow-lg shadow-red-500/50 hover:bg-red-700 hover:shadow-red-700/70 transition-all"

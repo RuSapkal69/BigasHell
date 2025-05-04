@@ -119,7 +119,7 @@ export default function TimeSpent() {
   }
 
   return (
-    <div className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800 h-full">
+    <div className="bg-gray-900 rounded-lg p-10 shadow-lg border border-gray-800 h-full">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
           <Clock className="h-5 w-5 text-red-500 mr-2" />
