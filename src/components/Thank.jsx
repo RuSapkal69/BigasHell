@@ -39,24 +39,22 @@ export default function Thank() {
 
   return (
     <div className="relative w-full overflow-hidden py-24 md:py-32" ref={containerRef}>
-      {/* Background gradient */}
+      
       <div className="absolute inset-0 bg-gradient-to-br from-red-100 via-white to-blue-100 z-0"></div>
 
-      {/* Decorative elements with darker, more visible colors */}
+     
       <div className="absolute top-0 left-0 w-96 h-96 bg-pink-400 rounded-full blur-3xl opacity-40 z-0 animate-blob"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-400 rounded-full blur-3xl opacity-40 z-0 animate-blob animation-delay-2000"></div>
       <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-green-300 rounded-full blur-3xl opacity-30 z-0 animate-blob animation-delay-4000"></div>
       
 
       
-      {/* Content container with improved spacing */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate={controls}
         className="relative z-10 flex flex-col items-center px-8 md:px-16 mx-auto"
       >
-        {/* Header with improved spacing */}
         <motion.div 
           variants={itemVariants} 
           className="text-center w-full max-w-5xl mx-auto mb-24"
@@ -84,16 +82,15 @@ export default function Thank() {
           </p>
         </motion.div>
 
-        {/* Avatar with better spacing */}
         <motion.div 
           variants={itemVariants}
           className="relative mb-28"
           whileHover={{ scale: 1.05, rotate: 5 }}
         >
           <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden ring-4 ring-white shadow-xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-400 to-blue-500 opacity-80"></div>
+            <div className="absolute inset-0"></div>
             <img 
-              src="/api/placeholder/400/400" 
+              src="/avatar.jpg" 
               alt="Gym Owner" 
               className="w-full h-full object-cover"
             />
@@ -101,7 +98,6 @@ export default function Thank() {
           <p className="text-center mt-6 text-xl font-medium text-gray-700">Rushikesh Sapkal, Founder</p>
         </motion.div>
 
-        {/* Benefits with larger cards and better spacing */}
         <motion.div 
           variants={itemVariants}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full max-w-6xl px-4 mb-20"
@@ -162,7 +158,6 @@ export default function Thank() {
         </motion.div>
       </motion.div>
       
-      {/* Add animation styles for the blob and cursor effects */}
       <style jsx>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }

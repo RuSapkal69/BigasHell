@@ -21,7 +21,7 @@ const FeatureSection2 = () => {
       id: 2,
       title: "Expert Personal Training",
       description: "One-on-one sessions with certified trainers who will help you achieve your fitness goals.",
-      image: "/HellGym_5.jpg",
+      image: "https://aicdn.picsart.com/f6cdad6e-562f-4730-b623-60514a3bae8d.png",
       ctaText: "Meet Our Trainers",
     },
     {
