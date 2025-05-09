@@ -28,7 +28,7 @@ const FeatureSection2 = () => {
       id: 3,
       title: "Specialized Group Classes",
       description: "High-energy group sessions for all fitness levels, from yoga to high-intensity training.",
-      image: "https://images.pexels.com/photos/4498151/pexels-photo-4498151.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      image: "https://aicdn.picsart.com/b65ac157-84fe-41c2-8644-0735a102fbd8.png",
       ctaText: "View Schedule",
     },
   ]
