@@ -1,4 +1,6 @@
 import { Facebook, Instagram, Twitter, Mail, Phone, HelpCircle, ShieldCheck } from "lucide-react"
+import { Link } from "react-router-dom"
+
 
 const Footer = () => {
   return (
@@ -46,14 +48,14 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="/auth/signin" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/auth/signin" className="text-gray-400 hover:text-white transition-colors">
                 Sign In
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/dashboard" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors">
                 Dashboard
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
