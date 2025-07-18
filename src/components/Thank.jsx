@@ -38,17 +38,7 @@ export default function Thank() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden py-24 md:py-32" ref={containerRef}>
-      
-      <div className="absolute inset-0 bg-gradient-to-br from-red-100 via-white to-blue-100 z-0"></div>
-
-     
-      <div className="absolute top-0 left-0 w-96 h-96 bg-pink-400 rounded-full blur-3xl opacity-40 z-0 animate-blob"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-400 rounded-full blur-3xl opacity-40 z-0 animate-blob animation-delay-2000"></div>
-      <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-green-300 rounded-full blur-3xl opacity-30 z-0 animate-blob animation-delay-4000"></div>
-      
-
-      
+    <div className="relative w-full overflow-hidden py-24 md:py-32 bg-black" ref={containerRef}>
       <motion.div 
         variants={containerVariants}
         initial="hidden"
@@ -75,7 +65,7 @@ export default function Thank() {
             }}
             className="h-1 w-4/5 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full mx-auto mt-4 mb-12"
           />
-          <p className="text-xl md:text-2xl leading-relaxed text-gray-700 max-w-4xl mx-auto px-6 md:px-16">
+          <p className="text-xl md:text-2xl leading-relaxed text-gray-300 max-w-4xl mx-auto px-6 md:px-16">
             "Our mission is to help you transform not just your body, but your entire approach to wellness. 
             We've built this gym to be a sanctuary where you can push your limits, find your strength, 
             and become part of a community that supports your journey every step of the way."
@@ -88,100 +78,62 @@ export default function Thank() {
           whileHover={{ scale: 1.05, rotate: 5 }}
         >
           <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden ring-4 ring-white shadow-xl mx-auto">
-            <div className="absolute inset-0"></div>
             <img 
               src="/avatar.jpg" 
               alt="Gym Owner" 
               className="w-full h-full object-cover"
             />
           </div>
-          <p className="text-center mt-6 text-xl font-medium text-gray-700">Rushikesh Sapkal, Founder</p>
+          <p className="text-center mt-6 text-xl font-medium text-gray-300">Rushikesh Sapkal, Founder</p>
         </motion.div>
 
         <motion.div 
           variants={itemVariants}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full max-w-6xl px-4 mb-20"
         >
+          {/* Box 1 */}
           <motion.div 
-            className="flex flex-col items-center p-8 bg-red-50 rounded-xl shadow-lg hover:bg-red-100 transition-all duration-500"
+            className="flex flex-col items-center p-8 bg-white/10 border border-white/20 backdrop-blur-lg rounded-xl shadow-lg transition-all duration-500"
             whileHover={{ 
               y: -12, 
-              boxShadow: "0 20px 40px -5px rgba(0, 0, 0, 0.2)",
+              boxShadow: "0 20px 40px -5px rgba(255, 255, 255, 0.2)",
               scale: 1.03
             }}
           >
-            <motion.div
-              whileHover={{ rotate: [0, 15, -15, 0], scale: 1.2 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Heart className="h-16 w-16 text-red-500 mb-6" />
-            </motion.div>
-            <h3 className="font-semibold text-2xl mb-4">Personalized Care</h3>
-            <p className="text-lg text-center text-gray-600">Customized workout plans tailored to your unique needs and goals.</p>
+            <Heart className="h-16 w-16 text-red-400 mb-6" />
+            <h3 className="font-semibold text-2xl mb-4 text-white">Personalized Care</h3>
+            <p className="text-lg text-center text-gray-300">Customized workout plans tailored to your unique needs and goals.</p>
           </motion.div>
-          
+
+          {/* Box 2 */}
           <motion.div 
-            className="flex flex-col items-center p-8 bg-purple-50 rounded-xl shadow-lg hover:bg-purple-100 transition-all duration-500"
+            className="flex flex-col items-center p-8 bg-white/10 border border-white/20 backdrop-blur-lg rounded-xl shadow-lg transition-all duration-500"
             whileHover={{ 
               y: -12, 
-              boxShadow: "0 20px 40px -5px rgba(0, 0, 0, 0.2)",
+              boxShadow: "0 20px 40px -5px rgba(255, 255, 255, 0.2)",
               scale: 1.03
             }}
           >
-            <motion.div
-              whileHover={{ rotate: 360, scale: 1.2 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Award className="h-16 w-16 text-purple-500 mb-6" />
-            </motion.div>
-            <h3 className="font-semibold text-2xl mb-4">Expert Guidance</h3>
-            <p className="text-lg text-center text-gray-600">Learn from certified trainers with years of experience in fitness.</p>
+            <Award className="h-16 w-16 text-purple-400 mb-6" />
+            <h3 className="font-semibold text-2xl mb-4 text-white">Expert Guidance</h3>
+            <p className="text-lg text-center text-gray-300">Learn from certified trainers with years of experience in fitness.</p>
           </motion.div>
-          
+
+          {/* Box 3 */}
           <motion.div 
-            className="flex flex-col items-center p-8 bg-blue-50 rounded-xl shadow-lg hover:bg-blue-100 transition-all duration-500"
+            className="flex flex-col items-center p-8 bg-white/10 border border-white/20 backdrop-blur-lg rounded-xl shadow-lg transition-all duration-500"
             whileHover={{ 
               y: -12, 
-              boxShadow: "0 20px 40px -5px rgba(0, 0, 0, 0.2)",
+              boxShadow: "0 20px 40px -5px rgba(255, 255, 255, 0.2)",
               scale: 1.03
             }}
           >
-            <motion.div
-              whileHover={{ rotate: [0, 180, 360], scale: 1.2 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Clock className="h-16 w-16 text-blue-500 mb-6" />
-            </motion.div>
-            <h3 className="font-semibold text-2xl mb-4">Flexible Hours</h3>
-            <p className="text-lg text-center text-gray-600">Open 24/7 to accommodate your busy schedule and lifestyle.</p>
+            <Clock className="h-16 w-16 text-blue-400 mb-6" />
+            <h3 className="font-semibold text-2xl mb-4 text-white">Flexible Hours</h3>
+            <p className="text-lg text-center text-gray-300">Open 24/7 to accommodate your busy schedule and lifestyle.</p>
           </motion.div>
         </motion.div>
       </motion.div>
-      
-      <style jsx>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        
-        .animate-blob {
-          animation: blob 7s infinite alternate;
-        }
-        
-        .animation-delay-300 {
-          animation-delay: 0.3s;
-        }
-        
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </div>
   );
 }
